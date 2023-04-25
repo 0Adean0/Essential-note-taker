@@ -11,34 +11,38 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 
 app.get("/notes", (req, res) =>
- res.sendFile(path.join(__dirname, ".public/notes.html")))
+ res.sendFile(path.join(__dirname, "/public/notes.html")))
 
 
 app.get("/api/notes", (req, res) => {
     console.info(`${req.method} desire to view previous notes recieved`)
-    readFile(".db/db.json", "utf-8", (err, data) => {
+    readFile("./db/db.json", "utf-8", (err, data) => {
         err? console.log(err): res.json(JSON.parse(data))
     })
-    console.log(userInputs)
+    console.log(notes)
 })
 
 app.post("/api/notes", (req, res) => {
     console.info(`${req.method} desire to add and access new notes recieved`)
     const{title,text} =req.body
     if(title&&text){
-        const newUserInput ={
+        const newNotes ={
             title, text,id: uuidv4(),
         } 
-        readFile(`.db/db.json`, "utf-8", (err,data) => {
+        readFile(`./db/db.json`, "utf-8", (err,data) => {
     if(err){
         throw err
     }
     const dataString = JSON.parse(data)
-    dataString.push(newUserInput)
-    writeFile(`.db/db.json`, JSON.stringify(dataString, null,4), (err) => err? console.error(err):
+    dataString.push(newNotes)
+    writeFile(`./db/db.json`, JSON.stringify(dataString, null,4), (err) => err? console.error(err):
     console.info("notes written to JSON")
     )
     })
+    const confirmation ={
+        status: success,
+        body: newNotes,
+    }
     }
 })
 app.get("*",(req, res) =>
