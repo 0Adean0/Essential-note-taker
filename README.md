@@ -5,4 +5,13 @@ This projects main objective was to create a note taker application that could b
 ## Usage
 To best use this application, any given user can initiate the program by clicking the get started button and inserting their specific criteria into the notes page. They can also access past notes and delete competed or unwanted inputs. 
 
-[link to running application]()
+[link to running application](https://sheltered-thicket-44511.herokuapp.com/)
+
+![Essential-note-taker](./public/assets/photos.img/localhost_3001_.png)
+
+![Essential-note-taker](./public/assets/photos.img/localhost_3001_notes.png)
+
+## Credits
+w3 schools, class
+## License
+MIT License
